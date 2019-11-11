@@ -20,7 +20,7 @@ def get_args():
     parser.add_argument('--cuda', default=False, help='Use a GPU')
 
     # Add data arguments
-    parser.add_argument('--data', default='indomain/prepared_data', help='path to data directory')
+    parser.add_argument('--data', default='baseline/prepared_data', help='path to data directory')
     parser.add_argument('--source-lang', default='de', help='source language')
     parser.add_argument('--target-lang', default='en', help='target language')
     parser.add_argument('--max-tokens', default=None, type=int, help='maximum number of tokens in a batch')
@@ -33,7 +33,7 @@ def get_args():
     # Add optimization arguments
     parser.add_argument('--max-epoch', default=10000, type=int, help='force stop training at specified epoch')
     parser.add_argument('--clip-norm', default=4.0, type=float, help='clip threshold of gradients')
-    parser.add_argument('--lr', default=0.0003, type=float, help='learning rate')
+    parser.add_argument('--lr', default=0.0008, type=float, help='learning rate')
     parser.add_argument('--patience', default=5, type=int,
                         help='number of epochs without improvement on validation set before early stopping')
 
@@ -92,6 +92,8 @@ def main(args):
 
     # Load last checkpoint if one exists
     state_dict = utils.load_checkpoint(args, model, optimizer)  # lr_scheduler
+    for g in optimizer.param_groups:
+        g['lr'] = 0.0008
     last_epoch = state_dict['last_epoch'] if state_dict is not None else -1
 
     # Track validation performance for early stopping

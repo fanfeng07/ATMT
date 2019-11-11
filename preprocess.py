@@ -20,14 +20,14 @@ def word_tokenize(line):
 
 def get_args():
     parser = argparse.ArgumentParser('Data pre-processing)')
-    parser.add_argument('--source-lang', default=None, metavar='SRC', help='source language')
-    parser.add_argument('--target-lang', default=None, metavar='TGT', help='target language')
+    parser.add_argument('--source-lang', default='de', metavar='SRC', help='source language')
+    parser.add_argument('--target-lang', default='en', metavar='TGT', help='target language')
 
-    parser.add_argument('--train-prefix', default=None, metavar='FP', help='train file prefix')
+    parser.add_argument('--train-prefix', default='train_file', metavar='FP', help='train file prefix')
     parser.add_argument('--tiny-train-prefix', default=None, metavar='FP', help='tiny train file prefix')
-    parser.add_argument('--valid-prefix', default=None, metavar='FP', help='valid file prefix')
-    parser.add_argument('--test-prefix', default=None, metavar='FP', help='test file prefix')
-    parser.add_argument('--dest-dir', default='data-bin', metavar='DIR', help='destination dir')
+    parser.add_argument('--valid-prefix', default='valid_file', metavar='FP', help='valid file prefix')
+    parser.add_argument('--test-prefix', default='test_file', metavar='FP', help='test file prefix')
+    parser.add_argument('--dest-dir', default='prepared', metavar='DIR', help='destination dir')
 
     parser.add_argument('--threshold-src', default=2, type=int,
                         help='map words appearing less than threshold times to unknown')
